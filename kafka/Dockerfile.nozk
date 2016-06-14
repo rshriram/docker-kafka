@@ -1,0 +1,10 @@
+# Kafka and Zookeeper
+
+FROM rshriram/kafka-0.9
+
+ADD scripts/start-kafka-nozk.sh /usr/bin/start-kafka-nozk.sh
+ADD supervisor/kafka-nozk.conf /etc/supervisor/conf.d/
+RUN rm /etc/supervisor/conf.d/zookeeper.conf /etc/supervisor/conf.d/kafka.conf
+
+
+CMD ["supervisord", "-n"]
